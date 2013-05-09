@@ -6,5 +6,8 @@ javascript 面向对象编程
 
 ## 创建一个对象
 
-var 
+var person = new Object()
+person.name = 'zzc'
+
+
 
