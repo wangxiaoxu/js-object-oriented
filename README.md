@@ -63,10 +63,87 @@ javascript 面向对象编程
 - 返回新对象； 
 
 缺点：每个方法都要在每个实例上面重新创建一遍。  
->一个解决方法是定义一个getName的全局方法
+>一个解决方法是定义一个getName的全局方法 
 
+```javascript
+    function Person(name) {
+        this.name = name;
+        this.getName = getName;
+    };
+    
+    function getName() {
+        return this.name;
+    };
+    
+    var person1 = new Person('zzc');
+    var person2 = new Person('tonycoolzhu');
+```
 
+**原型模式**
+```javascript
+    function Person() {
+        
+    }
+    
+    Person.prototype = {
+        constructor: Person,
+        name: 'zzc',
+        getName = function() {
+            return this.name;
+        }
+    }
+    
+    var person1 = new Person();
+    var person2 = new Person();
+```
 
+**组合使用构造函数模式和原型模式**
+```javascript
+    function Person(name) {
+        this.name = name;
+    }
+    
+    Person.prototype = {
+        constructor: Person,
+        name: 'zzc',
+        getName = function() {
+            return this.name;
+        }
+    }
+    
+    var person1 = new Person('zzc');
+    var person2 = new Person('tonycoolzhu');
+```
+**动态原型模式**
+```javascript
+    function Person(name) {
+        this.name = name;
+        // methods
+        if(typeof this.getName != "function") {
+            Person.prototype.sayName = function() {
+                return this.name;
+            }
+        }
+    }
+    
+    var person = new Person('zzc')
+    person.getName();
+```
+**稳妥构造函数模式**
+>javascript中的稳妥对象指的是没有公共属性，而且其方法也不引用this的对象。 
+
+```javascript
+    function Person(name) {
+        var o = new Object()
+        o.getName = function() {
+            return name;
+        }
+    }
+    
+    var person = Person('zzc');
+    person.getName();
+```
+## 继承
 
 
 
