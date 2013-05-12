@@ -1,13 +1,13 @@
 javascript 面向对象编程
 =========
 ## 数据类型
-**Primitive:**
+**原始值类型:**
 - number
 - string
 - boolean
 - undefined  
 
-**Object:**  
+**Object类型:**  
 - everything else
 
 ## 对象的定义
@@ -15,8 +15,52 @@ javascript 面向对象编程
 对象是无序属性的集合，其属性可以包含基本值、对象或者函数。
 **动态性**
 执行时可以动态的添加，删除，修改
->有些属性不能被修改——（只读属性、已删除属性或不可配置的属性） 
+>有些属性不能被修改——（只读属性、已删除属性或不可配置的属性）  
 
+在ES5规范中静态对象不能扩展新的属性，并且它的属性也不能被修改或者删除。他们是所谓的冻结对象，可以通过freeze(o)得到。
+```javascritp
+    var foo = {x: 10};
+ 
+    // 冻结对象
+    Object.freeze(foo);
+    console.log(Object.isFrozen(foo)); // true
+ 
+    // 不能修改
+    foo.x = 100;
+     
+    // 不能扩展
+    foo.y = 200;
+     
+    // 不能删除
+    delete foo.x;
+ 
+    console.log(foo); // {x: 10}
+```
+在ES5规范里，也使用Object.preventExtensions(o)方法防止扩展，或者使用Object.defineProperty(o)方法来定义属性。
+```javascript
+    var foo = {x : 10};
+ 
+    Object.defineProperty(foo, "y", {
+      value: 20,
+      writable: false, // 只读
+      configurable: false // 不可配置
+    });
+     
+    // 不能修改
+    foo.y = 200;
+     
+    // 不能删除
+    delete foo.y; // false
+     
+    // 防治扩展
+    Object.preventExtensions(foo);
+    console.log(Object.isExtensible(foo)); // false
+     
+    // 不能添加新属性
+    foo.z = 30;
+     
+    console.log(foo); {x: 10, y: 20}
+```
 
 ## 创建一个对象
 
