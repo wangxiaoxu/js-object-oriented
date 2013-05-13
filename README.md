@@ -275,6 +275,19 @@ javascript 面向对象编程
 ```
 
 **拷贝继承(jquery使用的继承模式)**
-
+'''javascript
+    function objectCompositon(target, source) {
+        var desc  = Object.getOwnPropertyDescriptor;
+        var prop  = Object.getOwnPropertyNames;
+        var def_prop = Object.defineProperty;
+     
+        prop(source).forEach(
+            function(key) {
+                def_prop(target, key, desc(source, key))
+            }
+        )
+        return target;
+    }
+'''
 
 
