@@ -12,8 +12,9 @@ javascript 面向对象编程
 
 ## 对象的定义
 
-对象是无序属性的集合，其属性可以包含基本值、对象或者函数。
-**动态性**
+对象是无序属性的集合，其属性可以包含基本值、对象或者函数。  
+
+**动态性**  
 执行时可以动态的添加，删除，修改
 >有些属性不能被修改——（只读属性、已删除属性或不可配置的属性）  
 
@@ -274,8 +275,9 @@ javascript 面向对象编程
     
 ```
 
-**拷贝继承(jquery使用的继承模式)**
-'''javascript
+**拷贝继承(jquery使用的继承模式)** 
+
+```javascript
     function objectCompositon(target, source) {
         var desc  = Object.getOwnPropertyDescriptor;
         var prop  = Object.getOwnPropertyNames;
@@ -288,6 +290,6 @@ javascript 面向对象编程
         )
         return target;
     }
-'''
+```
 
 
